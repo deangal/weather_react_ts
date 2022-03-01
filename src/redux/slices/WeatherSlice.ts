@@ -1,7 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 import  { WeatherState,GetWeatherAction } from '../types'
-
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
 
 // Define the initial state using that type
 const initialState: WeatherState = {
@@ -10,6 +11,22 @@ const initialState: WeatherState = {
     error: ""
 }
 
+let fetchData:any = []
+
+export const fetchWeather = createAsyncThunk(
+  'weather/fetch',
+  async (city: string) => {
+    const res:any = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_API_KEY}&q=${city}&aqi=no`)
+    .then(function (response) {
+      fetchData = response.data;
+      
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  }
+)
 
 export const counterSlice = createSlice({
   name: 'weather',
@@ -28,6 +45,24 @@ export const counterSlice = createSlice({
       state.error = action.payload
     }
   },
+  extraReducers: (builder) => {
+    builder.addCase(
+      fetchWeather.pending, (state) => {
+        state.loading = true;
+    });
+    builder.addCase(
+      fetchWeather.fulfilled, (state, action:any) => {
+        
+          state.data = fetchData;
+          state.loading = false;
+          state.error = ''
+
+    });
+    builder.addCase(
+      fetchWeather.rejected,(state, action:any) => {
+          state.error = action.error.message;
+    });
+ }
 })
 
 export const {GET_WEATHER,SET_LOADING,SET_ERROR} = counterSlice.actions

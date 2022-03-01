@@ -1,38 +1,25 @@
 import React, {FC,useEffect} from 'react';
 import './App.css';
 import { useSelector, useDispatch } from "react-redux";
-import { GET_WEATHER } from "./redux/slices/WeatherSlice";
-import axios from 'axios'
+import Search from './components/Search';
+import Weather from './components/Weather';
 const App: FC = () => {
 
    //redux
    let WeatherData = useSelector((state: any) => {
-    return state.users;
+    return state.weather.data;
   });
   const dispatch = useDispatch();
 
-
-  useEffect(() => {
-    async function fetchUsers() {
-      const res:any = axios.get("http://api.weatherapi.com/v1/current.json?key=fec5714f0b314f7ab89160639222802&q=London&aqi=no")
-      .then(function (response) {
-        dispatch(GET_WEATHER(response.data))
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-      
-
-    }
-    fetchUsers();
-  }, [])
-
-
+ console.log(WeatherData);
+ 
 
   return (
     <div className="App">
-     APP
+      <Search title="Enter city name and press search button" />
+      
+      {(WeatherData == null )? <h2 className="is-size-3 py-2">Loading...</h2> : <Weather data={WeatherData}/>
+      }
     </div>
   );
 }
