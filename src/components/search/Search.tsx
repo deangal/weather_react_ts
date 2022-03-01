@@ -1,8 +1,9 @@
 import React, { FC, useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
+import "./search.css"
 
-import { fetchWeather, SET_LOADING } from '../redux/slices/WeatherSlice';
-import { SET_ALERT } from '../redux/slices/AlertSlice'
+import { fetchWeather, SET_LOADING } from '../../redux/slices/WeatherSlice';
+import { SET_ALERT } from '../../redux/slices/AlertSlice'
 interface SearchProps {
   title: string;
 }
@@ -28,23 +29,19 @@ const Search: FC<SearchProps> = ({ title }) => {
   }
 
   return(
-    <div className="hero is-light has-text-centered">
-      <div className="hero-body">
-        <div className="container">
-          <h1 className="title">{title}</h1>
-          <form className="py-5" onSubmit={submitHandler}>
+    <div className="navbar">
+          <h1 className="nav_title">{title}</h1>
+          <form className="nav_form" onSubmit={submitHandler}>
             <input 
               type="text"
-              className="input has-text-centered mb-2"
+              className="nav_input"
               placeholder="Enter city name"
               style={{maxWidth: 300}}
               value={city}
               onChange={changeHandler}
             />
-            <button className="button is-primary is-fullwidth" style={{maxWidth: 300, margin: '0 auto'}}>Search</button>
+            <button className="nav_submit" style={{maxWidth: 300, margin: '0 auto'}}>Search</button>
           </form>
-        </div>
-      </div>
     </div>
   );  
 }

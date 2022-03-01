@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import "./alert.css"
 
 interface AlertProps {
   message: string;
@@ -7,7 +8,7 @@ interface AlertProps {
 
 const Alert: FC<AlertProps> = ({ message, onClose }) => {
   return(
-    <div className="modal is-active has-text-centered">
+    <div className="modal">
       <div className="modal-background" onClick={onClose}></div>
       <div className="modal-card">
         <header className="modal-card-head has-background-danger">
