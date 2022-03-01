@@ -58,7 +58,7 @@ export interface WeatherError {
 }
 
 export interface WeatherState {
-    data: WeatherData | null;
+    data: WeatherData | null | [];
     loading: boolean;
     error: string;
 }

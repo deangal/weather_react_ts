@@ -1,9 +1,8 @@
 import React, { FC, useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 
-// import { setAlert } from '../store/actions/alertActions';
 import { fetchWeather, SET_LOADING } from '../redux/slices/WeatherSlice';
-
+import { SET_ALERT } from '../redux/slices/AlertSlice'
 interface SearchProps {
   title: string;
 }
@@ -19,9 +18,9 @@ const Search: FC<SearchProps> = ({ title }) => {
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // if(city.trim() === '') {
-    //   return dispatch(setAlert('City is required!'));
-    // }
+    if(city.trim() === '') {
+      return dispatch(SET_ALERT('City is required!'));
+    }
 
     dispatch(SET_LOADING());
     dispatch(fetchWeather(city));

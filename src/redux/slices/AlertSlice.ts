@@ -21,7 +21,7 @@ export const counterSlice = createSlice({
   },
 })
 
-export const { } = counterSlice.actions
+export const { SET_ALERT } = counterSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectAlert = (state: RootState) => state

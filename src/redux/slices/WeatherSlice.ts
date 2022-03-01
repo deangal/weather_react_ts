@@ -6,12 +6,13 @@ import { useDispatch } from 'react-redux'
 
 // Define the initial state using that type
 const initialState: WeatherState = {
-    data: null,
+    data: [],
     loading: false,
     error: ""
 }
 
 let fetchData:any = []
+let errorHandle:any = ''
 
 export const fetchWeather = createAsyncThunk(
   'weather/fetch',
@@ -20,9 +21,12 @@ export const fetchWeather = createAsyncThunk(
     .then(function (response) {
       fetchData = response.data;
       
+      
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error.response.status);
+      if(error.response.status == 400)
+      errorHandle = "City Not Found";
     });
 
   }
@@ -55,12 +59,13 @@ export const counterSlice = createSlice({
         
           state.data = fetchData;
           state.loading = false;
-          state.error = ''
+          state.error = errorHandle
 
     });
     builder.addCase(
       fetchWeather.rejected,(state, action:any) => {
-          state.error = action.error.message;
+          state.error = errorHandle;
+          
     });
  }
 })
