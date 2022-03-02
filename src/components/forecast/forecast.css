@@ -1,0 +1,13 @@
+.forecast_container {
+    position: absolute;
+    bottom: 1px;
+    display: flex;
+    
+}
+
+.day {
+    width: 50vw;
+    height: 30vh;
+    background: #f2f2f2;
+    box-shadow: 0 0 15px 1px #d0d0d0;
+}

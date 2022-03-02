@@ -1,8 +1,32 @@
-.modal {
+
+
+.modal_content{
+    height: 15vh;
+    width: 15vw;
+    background-color: white;
+    border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
-}
-
+    position: absolute;
+    top: 35%;
+  }
+  
+  .bg_modal{
+    z-index: 9999999;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    transition: linear 1s ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  

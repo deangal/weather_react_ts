@@ -17,7 +17,7 @@ let errorHandle:any = ''
 export const fetchWeather = createAsyncThunk(
   'weather/fetch',
   async (city: string) => {
-    const res:any = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_API_KEY}&q=${city}&aqi=no`)
+    const res:any = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${city}&days=5&aqi=no&alerts=no`)
     .then(function (response) {
       fetchData = response.data;
       
@@ -32,7 +32,7 @@ export const fetchWeather = createAsyncThunk(
   }
 )
 
-export const counterSlice = createSlice({
+export const weatherSlice = createSlice({
   name: 'weather',
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
@@ -70,9 +70,9 @@ export const counterSlice = createSlice({
  }
 })
 
-export const {GET_WEATHER,SET_LOADING,SET_ERROR} = counterSlice.actions
+export const {GET_WEATHER,SET_LOADING,SET_ERROR} = weatherSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectWeather = (state: RootState) => state
 
-export default counterSlice.reducer
+export default weatherSlice.reducer

@@ -9,7 +9,7 @@ const initialState: AlertState = {
 }
 
 
-export const counterSlice = createSlice({
+export const alertSlice = createSlice({
   name: 'alert',
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
@@ -21,9 +21,9 @@ export const counterSlice = createSlice({
   },
 })
 
-export const { SET_ALERT } = counterSlice.actions
+export const { SET_ALERT } = alertSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectAlert = (state: RootState) => state
 
-export default counterSlice.reducer
+export default alertSlice.reducer
