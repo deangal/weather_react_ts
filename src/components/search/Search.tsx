@@ -30,7 +30,6 @@ const Search: FC<SearchProps> = ({ title }) => {
 
   return(
     <div className="navbar">
-          <h1 className="nav_title">{title}</h1>
           <form className="nav_form" onSubmit={submitHandler}>
             <input 
               type="text"
@@ -40,11 +39,11 @@ const Search: FC<SearchProps> = ({ title }) => {
               value={city}
               onChange={changeHandler}
             />
-            <button className="nav_submit" style={{maxWidth: 300, margin: '0 auto'}}>Search</button>
+            <button className="nav_submit" style={{maxWidth: 300}}>Search</button>
 
           </form>
 
-          <button className="toggle" onClick={() => dispatch(TOGGLE())} style={{maxWidth: 300, margin: '0 auto'}}>F/C</button>
+          <button className="toggle" onClick={() => dispatch(TOGGLE())} style={{maxWidth: 300, marginLeft:'1vw'}}>&#8457; / &#8451;</button>
 
     </div>
   );  
