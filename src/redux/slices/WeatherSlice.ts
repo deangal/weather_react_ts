@@ -8,7 +8,8 @@ import { useDispatch } from 'react-redux'
 const initialState: WeatherState = {
     data: [],
     loading: false,
-    error: ""
+    error: "",
+    toggle:false
 }
 
 let fetchData:any = []
@@ -47,6 +48,9 @@ export const weatherSlice = createSlice({
     },
     SET_ERROR: (state,action) => {
       state.error = action.payload
+    },
+    TOGGLE: (state) => {
+      state.toggle = !state.toggle
     }
   },
   extraReducers: (builder) => {
@@ -70,7 +74,7 @@ export const weatherSlice = createSlice({
  }
 })
 
-export const {GET_WEATHER,SET_LOADING,SET_ERROR} = weatherSlice.actions
+export const {GET_WEATHER,SET_LOADING,SET_ERROR,TOGGLE} = weatherSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectWeather = (state: RootState) => state

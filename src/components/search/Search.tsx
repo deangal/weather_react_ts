@@ -2,7 +2,7 @@ import React, { FC, useState, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import "./search.css"
 
-import { fetchWeather, SET_LOADING } from '../../redux/slices/WeatherSlice';
+import { fetchWeather, SET_LOADING, TOGGLE } from '../../redux/slices/WeatherSlice';
 import { SET_ALERT } from '../../redux/slices/AlertSlice'
 interface SearchProps {
   title: string;
@@ -41,7 +41,11 @@ const Search: FC<SearchProps> = ({ title }) => {
               onChange={changeHandler}
             />
             <button className="nav_submit" style={{maxWidth: 300, margin: '0 auto'}}>Search</button>
+
           </form>
+
+          <button className="toggle" onClick={() => dispatch(TOGGLE())} style={{maxWidth: 300, margin: '0 auto'}}>F/C</button>
+
     </div>
   );  
 }

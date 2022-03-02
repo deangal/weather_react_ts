@@ -14,6 +14,8 @@ const App: FC = () => {
     return state.weather.data;
   });
 
+  
+
   let ErrorData = useSelector((state: any) => {
     return state.weather.error;
   });

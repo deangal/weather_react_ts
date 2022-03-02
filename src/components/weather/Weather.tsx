@@ -1,14 +1,24 @@
 import React, { FC } from 'react';
 import { WeatherData } from '../../redux/types';
+import { useSelector } from "react-redux";
+
 import "./weather.css"
 interface WeatherProps {
   data: WeatherData;
 }
 
-const Weather: FC<WeatherProps> = ({ data }) => {
+const Weather: FC<WeatherProps> = ({ data },toggle:boolean) => {
+
+  // toggle f/c
+  let ToggleData = useSelector((state: any) => {
+    return state.weather.toggle;
+  });
+
   const fahrenheit = data.current.temp_f;
   const celsius = data.current.temp_c;
-
+  let temp = ToggleData ? fahrenheit : celsius ;
+  let sign = ToggleData ?  <sup>&#8457;</sup> : <sup>&#8451;</sup> 
+ 
   return(
       <div className="weather_container">
         <h1 className="weather_title">{data.location.name} - {data.location.country}</h1>
@@ -24,8 +34,7 @@ const Weather: FC<WeatherProps> = ({ data }) => {
             <div>
               <h2 className="temp_heading">Tempature</h2>
               <div className="temp_data">
-                <p className="temp_f">{fahrenheit}<sup>&#8457;</sup></p>
-                <p className="temp_c">{celsius}<sup>&#8451;</sup></p>
+                <p className="temp">{temp}{sign}</p>
               </div>
             </div>
           </div>
