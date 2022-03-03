@@ -18,16 +18,17 @@ let errorHandle:any = ''
 export const fetchWeather = createAsyncThunk(
   'weather/fetch',
   async (city: string) => {
+    errorHandle = ""
+    
     const res:any = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${city}&days=5&aqi=no&alerts=no`)
     .then(function (response) {
       fetchData = response.data;
-      
-      
     })
     .catch(function (error) {
-      console.log(error.response.status);
-      if(error.response.status == 400)
-      errorHandle = "City Not Found";
+      if(error.response.status == 400){
+        errorHandle = "City Not Found";
+
+      }
     });
 
   }
@@ -60,10 +61,14 @@ export const weatherSlice = createSlice({
     });
     builder.addCase(
       fetchWeather.fulfilled, (state, action:any) => {
-        
-          state.data = fetchData;
-          state.loading = false;
-          state.error = errorHandle
+          if(errorHandle == ''){
+            state.data = fetchData;
+            state.loading = false;
+            state.error = errorHandle
+          } else {
+            state.error = errorHandle
+          }
+         
 
     });
     builder.addCase(

@@ -14,10 +14,17 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 5px;
+    padding: 2.5vw;
+    font-size: 1.2vw;
   }
 
-
+.header_container{
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .level {
     display: flex;

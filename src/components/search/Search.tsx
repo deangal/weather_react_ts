@@ -21,10 +21,12 @@ const Search: FC<SearchProps> = ({ title }) => {
 
     if(city.trim() === '') {
       return dispatch(SET_ALERT('City is required!'));
+    } else {
+      dispatch(SET_LOADING());
+      dispatch(fetchWeather(city));
     }
 
-    dispatch(SET_LOADING());
-    dispatch(fetchWeather(city));
+    
     setCity('');
   }
 

@@ -14,11 +14,11 @@ const App: FC = () => {
   useEffect(() => {
     async function fetchOnMount() {
       
-        console.log(WeatherData);
         if(WeatherData.length == 0) {
           const res:any = await axios.get(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=haifa&days=5&aqi=no&alerts=no`)
           .then(function (response) {
             dispatch(GET_WEATHER(response.data));
+
           })
           .catch(function (error) {
             console.log(error.response.status);

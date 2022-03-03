@@ -23,10 +23,8 @@ const Weather: FC<WeatherProps> = ({ data },toggle:boolean) => {
       <div className="weather_container">
         <h1 className="weather_title">{data.location.name} - {data.location.country}</h1>
           <div className="header_container">
-            <div>
               <h2 className="weather_condition">{data.current.condition.text}</h2>
               <p className="weather_icon"><img src={data.current.condition.icon} alt=""/></p>
-            </div>
           </div>
 
             <div className="level">
